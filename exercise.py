@@ -10,8 +10,9 @@ lista_personas = [
 
 def ordenar(lista_personas):
     """ El metodo debe devolver una lista con las edades ordenadas de menor a mayor"""
-    # Completar
-    pass
+    edades = [persona[3] for persona in lista_personas]
+    edades.sort()
+    return edades
 
 
 def convertir_a_diccionario(lista_personas):
