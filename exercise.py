@@ -15,23 +15,27 @@ def ordenar(lista_personas):
     return edades
 
 
+
 def convertir_a_diccionario(lista_personas):
     """ Hacer un diccionario que tenga como claves los “dni” y como valores tuplas con nombre, apellido y edad """
-    # Completar
-    pass
+    personas_dict = {persona[0]: (persona[1],persona[2], persona[3]) for persona in lista_personas}
+    return personas_dict
 
 
 def devolver_edad(lista_personas, dni):
     """ Para la 'lista_personas' devuelve la edad de la persona que tenga el dni definido.
     Tip: intentar usar el método convertir_a_diccionario"""
-    # Completar
-    pass
+    personas_dict = convertir_a_diccionario(lista_personas)
+    if dni in personas_dict:
+        return personas_dict[dni][2]
+    else:
+        return None
 
 
 def eliminar_repetidos(lista_personas):
     """ El metodo debe devolver los elementos unicos """
-    # Completar
-    pass
+    return list(set(lista_personas))
+    
 
 
 def separar_por_edad(lista_personas):
@@ -39,15 +43,27 @@ def separar_por_edad(lista_personas):
     * lista 1: mayores de 25 (incluido)
     * lista 2: menores de 25
     """
-    # Completar
-    return [], []
+    mayores = []
+    menores = []
+
+    for persona in lista_personas:
+        if persona[3] >= 25:
+            mayores.append(persona)
+        else:
+            menores.append(persona)
+    return mayores, menores
 
 
 def obtener_promedio(lista):
     """ Implementar obtener el promedio de la lista de números que se recibe.
     Capturar con un try/except la excepción de dividir por cero"""
-    # Completar
-    pass
+    try:
+        if len(lista_personas) == 0:
+            return 0
+        return sum(lista) / len(lista)
+    except ZeroDivisionError:
+        return 0
+
 
 
 def main():
@@ -61,3 +77,7 @@ def main():
     print(' * Los menores de 25 son: %s\n' % separar_por_edad(lista_personas)[1])
     print(' * El promedio de las edades es: %s\n' % obtener_promedio(ordenar(lista_personas)))
     print(' * El promedio de una lista vacía es: %s\n' % obtener_promedio([]))
+
+
+if __name__ == "__main__":
+    main()
